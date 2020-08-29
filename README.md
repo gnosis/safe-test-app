@@ -1,44 +1,54 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Gnosis Safe App Starter
 
-## Available Scripts
+## How to start developing your Gnosis Safe App
 
-In the project directory, you can run:
+Clone this repo. Install dependencies and start a local dev server.
 
-### `yarn start`
+```
+yarn install
+yarn start
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Then:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Go to Rinkeby version of Gnosis Safe [https://rinkeby.gnosis-safe.io/app](https://rinkeby.gnosis-safe.io/app)
+- Create your test safe
+- Go to Apps -> Manage Apps -> Add Custom App
+- Paste your localhost URL, default is http://localhost:3003/
+- You should see Gnosis Safe App Starter as a new app
+- Develop your app from there
 
-### `yarn test`
+## Features
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can use `useSafeApp` React hook to get Gnosis Safe data and access SDK functions
 
-### `yarn build`
+```
+const { appsSdk, safeInfo } = useSafeApp();
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Safe React Components are also integrated and ready to use. [See all components](https://github.com/gnosis/safe-react-components#storybook).
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+**Important!**
+There are known issues with safe-apps-sdk. Feel free to downgrade on your own (v0.1.1 works nice for me).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Reported bugs:
 
-### `yarn eject`
+- [onSafeInfo is triggered in a loop](https://github.com/gnosis/safe-apps-sdk/issues/38)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Gnosis Safe App Starter combines recommendations described in the following repositories:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [Safe Apps SDK](https://github.com/gnosis/safe-apps-sdk)
+- [safe-react-components](https://github.com/gnosis/safe-react-components)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+It also includes recommended web3 libraries.
 
-## Learn More
+- [ethers](https://github.com/ethers-io/ethers.js/)
+- [bignumber.js](https://github.com/MikeMcl/bignumber.js/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Built by Kris Urbas ([@krzysu](https://twitter.com/krzysu)).
+
+The code in this repository is available under the MIT License.

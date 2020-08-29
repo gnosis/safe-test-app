@@ -13,17 +13,23 @@ const initialState: State = {
 
 const stateCtx = createContext<State>(initialState);
 
-export const SafeAppProvider: React.FC = ({ children }) => {
+export const useSafeApp = (): State => useContext(stateCtx);
+
+const SafeAppProvider: React.FC = ({ children }) => {
   const [appsSdk] = useState(initSdk());
   const [safeInfo, setSafeInfo] = useState<SafeInfo>();
 
   useEffect(() => {
     appsSdk.addListeners({
-      onSafeInfo: setSafeInfo,
+      onSafeInfo: (info) => {
+        if (!safeInfo) {
+          setSafeInfo(info);
+        }
+      },
     });
 
     return () => appsSdk.removeListeners();
-  }, [appsSdk]);
+  }, [appsSdk, safeInfo]);
 
   return (
     <stateCtx.Provider value={{ appsSdk, safeInfo }}>
@@ -32,4 +38,4 @@ export const SafeAppProvider: React.FC = ({ children }) => {
   );
 };
 
-export const useSafeApps = (): State => useContext(stateCtx);
+export default SafeAppProvider;
