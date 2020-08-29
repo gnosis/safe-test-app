@@ -1,6 +1,12 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Safe App",
+  "name": "Gnosis Safe App Starter",
+  "description": "Describe your Safe App here",
+  "iconPath": "logo.svg",
+  "providedBy": {
+    "name": "",
+    "url": ""
+  },
   "icons": [
     {
       "src": "favicon.ico",
