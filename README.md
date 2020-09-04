@@ -28,13 +28,6 @@ const { appsSdk, safeInfo } = useSafeApp();
 
 Safe React Components are also integrated and ready to use. [See all components](https://github.com/gnosis/safe-react-components#storybook).
 
-**Important!**
-There are known issues with safe-apps-sdk. Feel free to downgrade on your own (v0.1.1 works nice for me).
-
-Reported bugs:
-
-- [onSafeInfo is triggered in a loop](https://github.com/gnosis/safe-apps-sdk/issues/38)
-
 ## Dependencies
 
 Gnosis Safe App Starter combines recommendations described in the following repositories:
