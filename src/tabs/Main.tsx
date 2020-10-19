@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button, Text } from "@gnosis.pm/safe-react-components"
+import { Button, Text, TextField } from "@gnosis.pm/safe-react-components"
 import { SdkInstance, SafeInfo } from "@gnosis.pm/safe-apps-sdk"
 
 type OwnProps = {
@@ -53,7 +53,8 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
         Trigger dummy tx (sendTransactions)
       </Button>
       <hr />
-      <input
+      <TextField
+        label="SafeTxGas"
         value={safeTxGas}
         onChange={(e) => {
           setSafeTxGas(e.target.value)
