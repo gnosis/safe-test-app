@@ -1,20 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { ThemeProvider } from "styled-components";
-import { theme } from "@gnosis.pm/safe-react-components";
+import React from "react"
+import ReactDOM from "react-dom"
 
-import GlobalStyle from "./GlobalStyle";
-import SafeAppProvider from "./SafeAppProvider";
-import App from "./App";
+import GlobalStyle from "./GlobalStyle"
+import SafeAppProvider from "./SafeAppProvider"
+import App from "./App"
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <SafeAppProvider>
-        <App />
-      </SafeAppProvider>
-    </ThemeProvider>
+    <GlobalStyle />
+    <SafeAppProvider>
+      <App />
+    </SafeAppProvider>
   </React.StrictMode>,
   document.getElementById("root")
-);
+)

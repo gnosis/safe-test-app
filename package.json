@@ -8,7 +8,6 @@
   "homepage": ".",
   "dependencies": {
     "@gnosis.pm/safe-apps-sdk": "https://github.com/gnosis/safe-apps-sdk.git#15f6315",
-    "@gnosis.pm/safe-react-components": "^0.2.0",
     "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^10.4.9",
@@ -20,6 +19,7 @@
     "@types/styled-components": "^5.1.2",
     "bignumber.js": "^9.0.0",
     "ethers": "^5.0.9",
+    "evergreen-ui": "^5.1.2",
     "react": "^16.13.1",
     "react-app-rewired": "^2.1.6",
     "react-dom": "^16.13.1",

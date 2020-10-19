@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button, Text, TextField } from "@gnosis.pm/safe-react-components"
+import { Button, TextInput, Text } from "evergreen-ui"
 import { SdkInstance, SafeInfo } from "@gnosis.pm/safe-apps-sdk"
 
 type OwnProps = {
@@ -42,29 +42,21 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
 
   return (
     <div>
-      <Text size="lg">Click button to submit transaction</Text>
+      <Text size={500}>Click button to submit transaction</Text>
 
-      <Button
-        color="primary"
-        size="lg"
-        variant="contained"
-        onClick={handleSendTransactionsClick}
-      >
+      <Button appearance="primary" onClick={handleSendTransactionsClick}>
         Trigger dummy tx (sendTransactions)
       </Button>
       <hr />
-      <TextField
-        label="SafeTxGas"
+      <TextInput
         value={safeTxGas}
-        onChange={(e) => {
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setSafeTxGas(e.target.value)
         }}
       />
 
       <Button
-        color="primary"
-        size="lg"
-        variant="contained"
+        appearance="primary"
         onClick={handleSendTransactionsWithParamsClick}
       >
         Trigger dummy tx (sendTransactionsWithParams)

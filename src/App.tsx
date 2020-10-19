@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { Loader, Title, Tab } from "@gnosis.pm/safe-react-components"
+import { Spinner, Heading, SegmentedControl } from "evergreen-ui"
 import { useSafeApp } from "./SafeAppProvider"
 import { AppTabs } from "./types"
 import Main from "./tabs/Main"
@@ -18,10 +18,10 @@ const Container = styled.form`
 
 const tabs = [
   {
-    id: "0",
+    value: "0",
     label: "main",
   },
-  { id: "1", label: "RPC" },
+  { value: "1", label: "RPC" },
 ]
 
 const App = (): React.ReactElement => {
@@ -29,16 +29,18 @@ const App = (): React.ReactElement => {
   const [currentTab, setCurrentTab] = useState<string>("0")
 
   if (!safeInfo || !appsSdk) {
-    return <Loader size="md" />
+    return <Spinner size={24} />
   }
 
   return (
     <Container>
-      <Title size="sm">Gnosis Safe Test App</Title>
-      <Tab
-        selectedTab={currentTab}
+      <Heading size={700} marginTop="default">
+        Gnosis Safe Test App
+      </Heading>
+      <SegmentedControl
+        value={currentTab}
         onChange={(val) => setCurrentTab(val as AppTabs)}
-        items={tabs}
+        options={tabs}
       />
 
       {currentTab === "0" && <Main sdk={appsSdk} safeInfo={safeInfo} />}
