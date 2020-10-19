@@ -1,13 +1,13 @@
 {
-  "name": "gnosis-safe-app-starter",
+  "name": "safe-test-apps",
   "version": "0.0.1",
-  "description": "Gnosis Safe App Starter",
-  "author": "Kris Urbas @krzysu",
+  "description": "Gnosis Safe App for testing purposes",
+  "author": "Gnosis",
   "license": "MIT",
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@gnosis.pm/safe-apps-sdk": "^0.3.1",
+    "@gnosis.pm/safe-apps-sdk": "https://github.com/gnosis/safe-apps-sdk#d527aaa",
     "@gnosis.pm/safe-react-components": "^0.2.0",
     "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^5.11.4",

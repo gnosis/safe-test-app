@@ -1,6 +1,6 @@
 {
-  "short_name": "Safe App",
-  "name": "Gnosis Safe App Starter",
+  "short_name": "Safe Test App",
+  "name": "Safe Test App",
   "description": "Describe your Safe App here",
   "iconPath": "logo.svg",
   "icons": [
