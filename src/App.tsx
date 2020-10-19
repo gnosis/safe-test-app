@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { Button, Loader, Text, Title } from "@gnosis.pm/safe-react-components"
+import { Loader, Title, Tab } from "@gnosis.pm/safe-react-components"
 import { useSafeApp } from "./SafeAppProvider"
+import { AppTabs } from "./types"
+import Main from "./tabs/Main"
 
 const Container = styled.form`
   margin-bottom: 2rem;
@@ -14,78 +16,32 @@ const Container = styled.form`
   grid-row-gap: 1rem;
 `
 
-const App: React.FC = () => {
+const tabs = [
+  {
+    id: "0",
+    label: "main",
+  },
+  { id: "1", label: "RPC" },
+]
+
+const App = (): React.ReactElement => {
   const { appsSdk, safeInfo } = useSafeApp()
-  const [safeTxGas, setSafeTxGas] = useState("70000")
+  const [currentTab, setCurrentTab] = useState<string>("0")
 
-  if (!safeInfo) {
-    return <p>Couldn't connect to the safe</p>
-  }
-
-  const handleSendTransactionsClick = () => {
-    // just an example, this is not a valid transaction
-    const txs = [
-      {
-        to: safeInfo?.safeAddress,
-        value: "0",
-        data: "0x",
-      },
-    ]
-
-    appsSdk?.sendTransactions(txs)
-  }
-
-  const handleSendTransactionsWithParamsClick = () => {
-    // just an example, this is not a valid transaction
-    const txs = [
-      {
-        to: safeInfo?.safeAddress,
-        value: "0",
-        data: "0x",
-      },
-    ]
-
-    const params = {
-      safeTxGas: +safeTxGas,
-    }
-
-    appsSdk?.sendTransactionsWithParams({ txs, params })
-  }
-
-  if (!safeInfo) {
+  if (!safeInfo || !appsSdk) {
     return <Loader size="md" />
   }
 
   return (
     <Container>
-      <Title size="sm">Gnosis Safe App Starter</Title>
-
-      <Text size="lg">Click button to submit transaction</Text>
-
-      <Button
-        color="primary"
-        size="lg"
-        variant="contained"
-        onClick={handleSendTransactionsClick}
-      >
-        Trigger dummy tx (sendTransactions)
-      </Button>
-      <hr />
-      <input
-        value={safeTxGas}
-        onChange={(e) => {
-          setSafeTxGas(e.target.value)
-        }}
+      <Title size="sm">Gnosis Safe Test App</Title>
+      <Tab
+        selectedTab={currentTab}
+        onChange={(val) => setCurrentTab(val as AppTabs)}
+        items={tabs}
       />
 
-      <Button
-        color="primary"
-        size="lg"
-        variant="contained"
-        onClick={handleSendTransactionsWithParamsClick}
-      >
-        Trigger dummy tx (sendTransactionsWithParams)
-      </Button>
+      {currentTab === "0" && <Main sdk={appsSdk} safeInfo={safeInfo} />}
     </Container>
   )
 }
