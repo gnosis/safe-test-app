@@ -1571,9 +1571,9 @@
     "@ethersproject/properties" "^5.0.3"
     "@ethersproject/strings" "^5.0.4"
 
-"@gnosis.pm/safe-apps-sdk@https://github.com/gnosis/safe-apps-sdk.git#15f6315":
+"@gnosis.pm/safe-apps-sdk@https://github.com/gnosis/safe-apps-sdk.git#d7fbaf9":
   version "0.4.2"
-  resolved "https://github.com/gnosis/safe-apps-sdk.git#15f63159b127ed3f584fdcaa639a9122852bfe6f"
+  resolved "https://github.com/gnosis/safe-apps-sdk.git#d7fbaf963bd0428976241e3a220268d09386d98b"
 
 "@hapi/address@2.x.x":
   version "2.1.4"
