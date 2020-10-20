@@ -4,6 +4,7 @@ import { Spinner, Heading, SegmentedControl } from "evergreen-ui"
 import { useSafeApp } from "./SafeAppProvider"
 import { AppTabs } from "./types"
 import Main from "./tabs/Main"
+import RpcCalls from "./tabs/RpcCalls"
 
 const Container = styled.div`
   margin-bottom: 2rem;
@@ -44,6 +45,7 @@ const App = (): React.ReactElement => {
       />
 
       {currentTab === "0" && <Main sdk={appsSdk} safeInfo={safeInfo} />}
+      {currentTab === "1" && <RpcCalls sdk={appsSdk} />}
     </Container>
   )
 }
