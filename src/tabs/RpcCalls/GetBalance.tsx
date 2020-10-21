@@ -11,7 +11,7 @@ const GetBalance = ({ sdk }: OwnProps): React.ReactElement => {
   // const [result, setResult] = useState("")
 
   const handleClick = () => {
-    sdk.eth.getBalance({ params: address })
+    sdk.eth.getBalance({ params: [address] })
   }
 
   return (
