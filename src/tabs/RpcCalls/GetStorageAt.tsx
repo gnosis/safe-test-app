@@ -12,17 +12,17 @@ type OwnProps = {
   sdk: SdkInstance
 }
 
-const GetBalance = ({ sdk }: OwnProps): React.ReactElement => {
+const GetStorageAt = ({ sdk }: OwnProps): React.ReactElement => {
   const [address, setAddress] = useState("")
   // const [result, setResult] = useState("")
 
   const handleClick = () => {
-    sdk.eth.getBalance({ params: [address] })
+    sdk.eth.getStorageAt({ params: [address] })
   }
 
   return (
     <Container>
-      <Text>getBalance(address)</Text>
+      <Text>getStorageAt(address)</Text>
       <TextInput
         value={address}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,4 +43,4 @@ const GetBalance = ({ sdk }: OwnProps): React.ReactElement => {
   )
 }
 
-export default GetBalance
+export default GetStorageAt
