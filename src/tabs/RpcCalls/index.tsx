@@ -8,6 +8,7 @@ import GetBlockByHash from "./GetBlockByHash"
 import GetBlockByNumber from "./GetBlockByNumber"
 import Call from "./Call"
 import GetTransactionReceipt from "./GetTransactionReceipt"
+import GetTransactionByHash from "./GetTransactionByHash"
 
 type OwnProps = {
   sdk: SdkInstance
@@ -30,6 +31,8 @@ const RpcCalls = ({ sdk }: OwnProps) => (
     <GetBlockByNumber sdk={sdk} />
     <hr />
     <GetTransactionReceipt sdk={sdk} />
+    <hr />
+    <GetTransactionByHash sdk={sdk} />
   </div>
 )
 

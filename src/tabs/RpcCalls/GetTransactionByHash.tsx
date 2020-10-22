@@ -19,12 +19,12 @@ const GetTransactionByHash = ({ sdk }: OwnProps): React.ReactElement => {
   // const [result, setResult] = useState("")
 
   const handleClick = () => {
-    sdk.eth.getTransactionByHash({ params: hash })
+    sdk.eth.getTransactionByHash({ params: [hash] })
   }
 
   return (
     <Container>
-      <Text>getBlockByHash(hash)</Text>
+      <Text>getTransactionByHash(hash)</Text>
       <TextInput
         value={hash}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

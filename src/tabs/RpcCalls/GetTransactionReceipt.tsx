@@ -19,12 +19,12 @@ const GetTransactionReceipt = ({ sdk }: OwnProps): React.ReactElement => {
   // const [result, setResult] = useState("")
 
   const handleClick = () => {
-    sdk.eth.getTransactionReceipt({ params: hash })
+    sdk.eth.getTransactionReceipt({ params: [hash] })
   }
 
   return (
     <Container>
-      <Text>getBlockByHash(hash)</Text>
+      <Text>getTransactionReceipt(hash)</Text>
       <TextInput
         value={hash}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
