@@ -1,5 +1,5 @@
 {
-  "name": "safe-test-apps",
+  "name": "safe-app-test",
   "version": "0.0.1",
   "description": "Gnosis Safe App for testing purposes",
   "author": "Gnosis",
@@ -7,7 +7,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@gnosis.pm/safe-apps-sdk": "https://github.com/gnosis/safe-apps-sdk.git#af6957d",
+    "@gnosis.pm/safe-apps-sdk": "https://github.com/gnosis/safe-apps-sdk.git#06f64ee",
     "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
