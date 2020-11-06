@@ -20,7 +20,7 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       },
     ]
 
-    sdk.sendTransactions(txs)
+    // sdk.sendTransactions(txs)
   }
 
   const handleSendTransactionsWithParamsClick = () => {
@@ -37,7 +37,7 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       safeTxGas: +safeTxGas,
     }
 
-    sdk.sendTransactionsWithParams({ txs, params })
+    // sdk.sendTransactionsWithParams({ txs, params })
   }
 
   return (
