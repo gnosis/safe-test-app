@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { Spinner, Heading, SegmentedControl } from "evergreen-ui"
-import SDK from "@gnosis.pm/safe-apps-sdk"
+import SDK, { SafeInfo } from "@gnosis.pm/safe-apps-sdk"
 import { AppTabs } from "./types"
 import Main from "./tabs/Main"
 import RpcCalls from "./tabs/RpcCalls"
@@ -27,15 +27,23 @@ const tabs = [
 
 const App = (): React.ReactElement => {
   const [sdk, setSDK] = useState<SDK | undefined>()
+  const [safeInfo, setSafeInfo] = useState<SafeInfo | undefined>()
 
   useEffect(() => {
+    async function loadSafeInfo() {
+      const info = await sdkInstance.getSafeInfo()
+
+      setSafeInfo(info)
+    }
+
     const sdkInstance = new SDK()
     setSDK(sdkInstance)
+    loadSafeInfo()
   }, [])
 
   const [currentTab, setCurrentTab] = useState<string>("0")
 
-  if (!sdk) {
+  if (!sdk || !safeInfo) {
     return <Spinner size={24} />
   }
 
@@ -49,9 +57,9 @@ const App = (): React.ReactElement => {
         onChange={(val) => setCurrentTab(val as AppTabs)}
         options={tabs}
       />
-      {/* 
+
       {currentTab === "0" && <Main sdk={sdk} safeInfo={safeInfo} />}
-      {currentTab === "1" && <RpcCalls sdk={sdk} />} */}
+      {currentTab === "1" && <RpcCalls sdk={sdk} />}
     </Container>
   )
 }

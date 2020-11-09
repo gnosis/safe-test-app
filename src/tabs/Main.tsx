@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Button, TextInput, Text } from "evergreen-ui"
+import { Button, TextInput, Textarea, Text } from "evergreen-ui"
 import { SdkInstance, SafeInfo } from "@gnosis.pm/safe-apps-sdk"
 
 type OwnProps = {
@@ -20,33 +20,22 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       },
     ]
 
-    // sdk.sendTransactions(txs)
-  }
-
-  const handleSendTransactionsWithParamsClick = () => {
-    // just an example, this is not a valid transaction
-    const txs = [
-      {
-        to: safeInfo?.safeAddress,
-        value: "0",
-        data: "0x",
-      },
-    ]
-
     const params = {
       safeTxGas: +safeTxGas,
     }
 
-    // sdk.sendTransactionsWithParams({ txs, params })
+    sdk.txs.send({ txs, params })
   }
 
   return (
     <div>
+      <Textarea
+        value={JSON.stringify(safeInfo, null, 2)}
+        marginTop={4}
+        rows={4}
+      />
+      <hr />
       <Text size={500}>Click button to submit transaction</Text>
-
-      <Button appearance="primary" onClick={handleSendTransactionsClick}>
-        Trigger dummy tx (sendTransactions)
-      </Button>
       <hr />
       <TextInput
         value={safeTxGas}
@@ -55,11 +44,8 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
         }}
       />
 
-      <Button
-        appearance="primary"
-        onClick={handleSendTransactionsWithParamsClick}
-      >
-        Trigger dummy tx (sendTransactionsWithParams)
+      <Button appearance="primary" onClick={handleSendTransactionsClick}>
+        Trigger dummy tx (safe.txs.send)
       </Button>
     </div>
   )
