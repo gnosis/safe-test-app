@@ -9,8 +9,9 @@ type OwnProps = {
 
 const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
   const [safeTxGas, setSafeTxGas] = useState("70000")
+  const [txStatus, setTxStatus] = useState("")
 
-  const handleSendTransactionsClick = () => {
+  const handleSendTransactionsClick = async () => {
     // just an example, this is not a valid transaction
     const txs = [
       {
@@ -24,7 +25,16 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       safeTxGas: +safeTxGas,
     }
 
-    sdk.txs.send({ txs, params })
+    setTxStatus("")
+    try {
+      const response = await sdk.txs.send({ txs, params })
+
+      setTxStatus(
+        `Transaction was created with safeTxHash: ${response.safeTxHash}`
+      )
+    } catch (err) {
+      setTxStatus("Failed to send a transaction")
+    }
   }
 
   return (
@@ -47,6 +57,7 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       <Button appearance="primary" onClick={handleSendTransactionsClick}>
         Trigger dummy tx (safe.txs.send)
       </Button>
+      <Text>{txStatus}</Text>
     </div>
   )
 }
