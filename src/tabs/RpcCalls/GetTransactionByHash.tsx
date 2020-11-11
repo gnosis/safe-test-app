@@ -18,8 +18,10 @@ const GetTransactionByHash = ({ sdk }: OwnProps): React.ReactElement => {
   )
   // const [result, setResult] = useState("")
 
-  const handleClick = () => {
-    sdk.eth.getTransactionByHash({ params: [hash] })
+  const handleClick = async () => {
+    const response = sdk.eth.getTransactionByHash({ params: [hash] })
+
+    console.log({ response })
   }
 
   return (

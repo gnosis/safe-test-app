@@ -16,8 +16,10 @@ const GetStorageAt = ({ sdk }: OwnProps): React.ReactElement => {
   const [address, setAddress] = useState("")
   // const [result, setResult] = useState("")
 
-  const handleClick = () => {
-    sdk.eth.getStorageAt({ params: [address] })
+  const handleClick = async () => {
+    const response = await sdk.eth.getStorageAt({ params: [address] })
+
+    console.log({ response })
   }
 
   return (

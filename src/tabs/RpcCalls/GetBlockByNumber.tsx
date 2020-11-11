@@ -16,8 +16,10 @@ const GetBlockByNumber = ({ sdk }: OwnProps): React.ReactElement => {
   const [number, setNumber] = useState("11054275")
   // const [result, setResult] = useState("")
 
-  const handleClick = () => {
-    sdk.eth.getBlockByNumber({ params: [number] })
+  const handleClick = async () => {
+    const response = await sdk.eth.getBlockByNumber({ params: [number] })
+
+    console.log({ response })
   }
 
   return (

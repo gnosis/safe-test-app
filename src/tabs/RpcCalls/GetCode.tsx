@@ -16,8 +16,10 @@ const GetCode = ({ sdk }: OwnProps): React.ReactElement => {
   const [address, setAddress] = useState("")
   // const [result, setResult] = useState("")
 
-  const handleClick = () => {
-    sdk.eth.getCode({ params: [address] })
+  const handleClick = async () => {
+    const response = await sdk.eth.getCode({ params: [address] })
+
+    console.log({ response })
   }
 
   return (

@@ -16,8 +16,8 @@ const GetPastLogs = ({ sdk }: OwnProps): React.ReactElement => {
   const [fromBlock, setFromBlock] = useState("0xA8ACC3")
   const [toBlock, setToBlock] = useState("latest")
 
-  const handleClick = () => {
-    sdk.eth.getPastLogs({
+  const handleClick = async () => {
+    const response = await sdk.eth.getPastLogs({
       params: [
         {
           fromBlock,
@@ -25,6 +25,8 @@ const GetPastLogs = ({ sdk }: OwnProps): React.ReactElement => {
         },
       ],
     })
+
+    console.log({ response })
   }
 
   return (
