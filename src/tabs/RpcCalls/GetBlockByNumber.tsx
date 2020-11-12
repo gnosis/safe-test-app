@@ -13,7 +13,7 @@ type OwnProps = {
 }
 
 const GetBlockByNumber = ({ sdk }: OwnProps): React.ReactElement => {
-  const [number, setNumber] = useState("11054275")
+  const [number, setNumber] = useState("0xA8ACC3")
   // const [result, setResult] = useState("")
 
   const handleClick = async () => {
