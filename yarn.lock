@@ -1447,9 +1447,9 @@
     "@ethersproject/properties" "^5.0.3"
     "@ethersproject/strings" "^5.0.4"
 
-"@gnosis.pm/safe-apps-sdk@https://github.com/gnosis/safe-apps-sdk.git#5e910b0":
+"@gnosis.pm/safe-apps-sdk@https://github.com/gnosis/safe-apps-sdk.git#ed8d0a2":
   version "1.0.0"
-  resolved "https://github.com/gnosis/safe-apps-sdk.git#5e910b0a20273434dc32ef6ac01e424575b3bd6c"
+  resolved "https://github.com/gnosis/safe-apps-sdk.git#ed8d0a24d20e232ee988a1d5a8635d788cc6d2f7"
   dependencies:
     semver "^7.3.2"
     web3-core "^1.3.0"
