@@ -19,7 +19,7 @@ const GetTransactionByHash = ({ sdk }: OwnProps): React.ReactElement => {
   // const [result, setResult] = useState("")
 
   const handleClick = async () => {
-    const response = await sdk.eth.getTransactionByHash({ params: [hash] })
+    const response = await sdk.eth.getTransactionByHash([hash])
 
     console.log({ response })
   }

@@ -19,7 +19,7 @@ const GetBlockByHash = ({ sdk }: OwnProps): React.ReactElement => {
   // const [result, setResult] = useState("")
 
   const handleClick = async () => {
-    const response = await sdk.eth.getBlockByHash({ params: [hash] })
+    const response = await sdk.eth.getBlockByHash([hash])
 
     console.log({ response })
   }

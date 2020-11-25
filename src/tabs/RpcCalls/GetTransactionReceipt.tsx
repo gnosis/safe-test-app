@@ -19,7 +19,7 @@ const GetTransactionReceipt = ({ sdk }: OwnProps): React.ReactElement => {
   // const [result, setResult] = useState("")
 
   const handleClick = async () => {
-    const response = await sdk.eth.getTransactionReceipt({ params: [hash] })
+    const response = await sdk.eth.getTransactionReceipt([hash])
 
     console.log({ response })
   }

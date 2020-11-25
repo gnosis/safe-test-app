@@ -17,7 +17,7 @@ const GetBalance = ({ sdk }: OwnProps): React.ReactElement => {
   // const [result, setResult] = useState("")
 
   const handleClick = async () => {
-    const response = await sdk.eth.getBalance({ params: [address] })
+    const response = await sdk.eth.getBalance([address])
 
     console.log({ response })
   }

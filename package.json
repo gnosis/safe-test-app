@@ -7,7 +7,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@gnosis.pm/safe-apps-sdk": "https://github.com/gnosis/safe-apps-sdk.git#12ed65a",
+    "@gnosis.pm/safe-apps-sdk": "1.0.0-beta.4",
     "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",

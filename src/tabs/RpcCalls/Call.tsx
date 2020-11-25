@@ -29,7 +29,7 @@ const Call = ({ sdk }: OwnProps): React.ReactElement => {
   // const [result, setResult] = useState("")
 
   const handleClick = async () => {
-    const response = await sdk.eth.call({ params: [JSON.parse(value)] })
+    const response = await sdk.eth.call([JSON.parse(value)])
 
     console.log({ response })
   }
