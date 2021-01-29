@@ -22,6 +22,12 @@ const GetBlockByNumber = ({ sdk }: OwnProps): React.ReactElement => {
     console.log({ response })
   }
 
+  const handleLatestClick = async () => {
+    const response = await sdk.eth.getBlockByNumber(["latest"])
+
+    console.log({ response })
+  }
+
   return (
     <Container>
       <Text>getBlockByNumber(number)</Text>
@@ -35,6 +41,16 @@ const GetBlockByNumber = ({ sdk }: OwnProps): React.ReactElement => {
       <Button
         appearance="primary"
         onClick={handleClick}
+        maxWidth={140}
+        justifyContent="center"
+        marginTop={8}
+      >
+        Request
+      </Button>
+      <Text marginTop={16}>getBlockByNumber("latest")</Text>
+      <Button
+        appearance="primary"
+        onClick={handleLatestClick}
         maxWidth={140}
         justifyContent="center"
         marginTop={8}

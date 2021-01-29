@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "@gnosis.pm/safe-apps-sdk": {
+      "signature": "0751753827728fdfbf0b2b12978e4c09",
+      "file": true,
+      "replaced": "1.0.3"
+    }
+  }
+}
