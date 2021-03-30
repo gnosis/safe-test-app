@@ -7,6 +7,7 @@ import Main from "./tabs/Main"
 import RpcCalls from "./tabs/RpcCalls"
 
 const Container = styled.div`
+  padding: 24px;
   margin-bottom: 2rem;
   width: 100%;
   max-width: 480px;
