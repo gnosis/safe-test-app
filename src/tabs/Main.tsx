@@ -45,6 +45,19 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
         rows={4}
       />
       <hr />
+      <Button
+        appearance="primary"
+        onClick={async () => {
+          console.log("fetching balance")
+          // @ts-expect-error eee
+          const balances = await sdk.safe.getBalances()
+
+          console.log({ balances })
+        }}
+      >
+        Get safe balances
+      </Button>
+      <hr />
       <Text size={500}>Click button to submit transaction</Text>
       <hr />
       <TextInput

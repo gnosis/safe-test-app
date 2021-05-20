@@ -33,7 +33,7 @@ const App = (): React.ReactElement => {
 
   useEffect(() => {
     async function loadSafeInfo() {
-      const info = await SDK.getSafeInfo()
+      const info = await SDK.safe.getInfo()
       console.log({ info })
       setSafeInfo(info)
     }
