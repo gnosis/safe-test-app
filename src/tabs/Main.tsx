@@ -48,9 +48,7 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       <Button
         appearance="primary"
         onClick={async () => {
-          console.log("fetching balance")
-          // @ts-expect-error eee
-          const balances = await sdk.safe.getBalances()
+          const balances = await sdk.safe.getBalances({ currency: "rub" })
 
           console.log({ balances })
         }}
