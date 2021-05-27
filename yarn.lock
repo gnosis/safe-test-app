@@ -2249,12 +2249,10 @@
     "@ethersproject/properties" "^5.1.0"
     "@ethersproject/strings" "^5.1.0"
 
-"@gnosis.pm/safe-apps-sdk@3.0.0-alpha.5":
-  version "3.0.0-alpha.5"
-  resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-apps-sdk/-/safe-apps-sdk-3.0.0-alpha.5.tgz#f939e3a5719f51686151b76cb40af2ca4d410d30"
-  integrity sha512-yVvnJCl3B9Xk68vh+03rej4REx7cTfiR55b9TjqPaBtZLtY+c57UHCslUmkK+0MRMF4SyKaV5S9BOqI/iX9a3Q==
-  dependencies:
-    semver "7.1.1"
+"@gnosis.pm/safe-apps-sdk@3.0.0-alpha.7":
+  version "3.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/@gnosis.pm/safe-apps-sdk/-/safe-apps-sdk-3.0.0-alpha.7.tgz#19fb92679b65576c6d8d5d851a0662e118d68fc5"
+  integrity sha512-sAAmLlMlBUtkg+STfsAZozDAVMhljLb8T5JmStblalFAy+3Y3K0Fes3y2cNIDIBdbdxfVdnNVtw8mNwEqSapvA==
 
 "@hapi/address@2.x.x":
   version "2.1.4"
