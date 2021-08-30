@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Button, TextInput, Textarea, Text } from "evergreen-ui"
-import { SdkInstance, SafeInfo } from "@gnosis.pm/safe-apps-sdk"
+import SdkInstance, { SafeInfo } from "@gnosis.pm/safe-apps-sdk"
 
 type OwnProps = {
   sdk: SdkInstance
@@ -11,6 +11,8 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
   const [safeTxGas, setSafeTxGas] = useState("70000")
   const [txStatus, setTxStatus] = useState("")
   const [safeTxHash, setSafeTxHash] = useState("")
+  const [message, setMessage] = useState("")
+  const [signatureStatus, setSignatureStatus] = useState("")
 
   const handleSendTransactionsClick = async () => {
     // just an example, this is not a valid transaction
@@ -44,6 +46,17 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       const response = await sdk.txs.getBySafeTxHash(safeTxHash)
 
       console.log({ response })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const handleCheckSignatureClick = async () => {
+    setSignatureStatus("")
+    try {
+      const response = await sdk.safe.isMessageSigned(message)
+      console.log({ response })
+      setSignatureStatus(`Message is ${response ? "signed" : "not signed"}`)
     } catch (err) {
       console.error(err)
     }
@@ -94,6 +107,19 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       <Button appearance="primary" onClick={handleGetTxClick}>
         Get Transaction by safe tx hash
       </Button>
+      <hr />
+      <Text>Signatures</Text><br/>
+      <TextInput
+        placeholder="Message hash"
+        value={message}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          setMessage(e.target.value)
+        }}
+      />
+      <Button appearance="primary" onClick={handleCheckSignatureClick}>
+        Check signature
+      </Button>
+      {signatureStatus && <Text>{signatureStatus}</Text>}
     </div>
   )
 }
