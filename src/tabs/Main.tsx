@@ -108,15 +108,24 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
         Get Transaction by safe tx hash
       </Button>
       <hr />
-      <Text>Signatures</Text><br/>
+      <Text>Signatures</Text>
+      <br />
       <TextInput
-        placeholder="Message hash"
+        placeholder="Message"
         value={message}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setMessage(e.target.value)
         }}
       />
-      <Button appearance="primary" onClick={handleCheckSignatureClick}>
+      <Button
+        appearance="primary"
+        onClick={() => {
+          sdk.txs.signMessage(message)
+        }}
+      >
+        Sign message
+      </Button>
+      <Button appearance="default" onClick={handleCheckSignatureClick}>
         Check signature
       </Button>
       {signatureStatus && <Text>{signatureStatus}</Text>}
