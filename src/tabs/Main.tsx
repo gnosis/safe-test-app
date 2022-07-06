@@ -83,6 +83,16 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
         Get safe balances
       </Button>
       <hr />
+      <Button
+        appearance="primary"
+        onClick={async () => {
+          const chainInfo = await sdk.safe.getChainInfo();
+          console.log(chainInfo);
+        }}
+      >
+        Get Chain Info
+      </Button>
+      <hr />
       <Text size={500}>Click button to submit transaction</Text>
       <hr />
       <TextInput
