@@ -68,7 +68,7 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
     setTypedSignatureStatus('');
     try {
       const response = await sdk.safe.isMessageSigned(
-        JSON.parse(JSON.stringify(typedMessage))
+        JSON.stringify(JSON.parse(typedMessage))
       );
       console.log({ response });
       setTypedSignatureStatus(
@@ -167,7 +167,9 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       <Button
         appearance="primary"
         onClick={() => {
-          sdk.txs.signTypedMessage(JSON.parse(JSON.stringify(typedMessage)));
+          const message = JSON.stringify(JSON.parse(typedMessage));
+          sdk.txs.signTypedMessage(message);
+          console.log(message);
         }}
       >
         Sign Typed message
