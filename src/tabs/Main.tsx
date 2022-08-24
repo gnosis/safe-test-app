@@ -1,66 +1,83 @@
-import React, { useState } from "react"
-import { Button, TextInput, Textarea, Text } from "evergreen-ui"
-import SdkInstance, { SafeInfo } from "@gnosis.pm/safe-apps-sdk"
+import React, { useState } from 'react';
+import { Button, TextInput, Textarea, Text } from 'evergreen-ui';
+import SdkInstance, { SafeInfo } from '@gnosis.pm/safe-apps-sdk';
 
 type OwnProps = {
-  sdk: SdkInstance
-  safeInfo: SafeInfo
-}
+  sdk: SdkInstance;
+  safeInfo: SafeInfo;
+};
 
 const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
-  const [safeTxGas, setSafeTxGas] = useState("70000")
-  const [txStatus, setTxStatus] = useState("")
-  const [safeTxHash, setSafeTxHash] = useState("")
-  const [message, setMessage] = useState("")
-  const [signatureStatus, setSignatureStatus] = useState("")
+  const [safeTxGas, setSafeTxGas] = useState('70000');
+  const [txStatus, setTxStatus] = useState('');
+  const [safeTxHash, setSafeTxHash] = useState('');
+  const [message, setMessage] = useState('');
+  const [typedMessage, setTypedMessage] = useState('');
+  const [signatureStatus, setSignatureStatus] = useState('');
+  const [typedSignatureStatus, setTypedSignatureStatus] = useState('');
 
   const handleSendTransactionsClick = async () => {
     // just an example, this is not a valid transaction
     const txs = [
       {
         to: safeInfo?.safeAddress,
-        value: "0",
-        data: "0x",
+        value: '0',
+        data: '0x',
       },
-    ]
+    ];
 
     const params = {
       safeTxGas: +safeTxGas,
-    }
+    };
 
-    setTxStatus("")
+    setTxStatus('');
     try {
-      const response = await sdk.txs.send({ txs, params })
+      const response = await sdk.txs.send({ txs, params });
 
       setTxStatus(
         `Transaction was created with safeTxHash: ${response.safeTxHash}`
-      )
+      );
     } catch (err) {
-      setTxStatus("Failed to send a transaction")
+      setTxStatus('Failed to send a transaction');
     }
-  }
+  };
 
   const handleGetTxClick = async () => {
-    setTxStatus("")
+    setTxStatus('');
     try {
-      const response = await sdk.txs.getBySafeTxHash(safeTxHash)
+      const response = await sdk.txs.getBySafeTxHash(safeTxHash);
 
-      console.log({ response })
+      console.log({ response });
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
   const handleCheckSignatureClick = async () => {
-    setSignatureStatus("")
+    setSignatureStatus('');
     try {
-      const response = await sdk.safe.isMessageSigned(message)
-      console.log({ response })
-      setSignatureStatus(`Message is ${response ? "signed" : "not signed"}`)
+      const response = await sdk.safe.isMessageSigned(message);
+      console.log({ response });
+      setSignatureStatus(`Message is ${response ? 'signed' : 'not signed'}`);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
+
+  const handleCheckTypedSignatureClick = async () => {
+    setTypedSignatureStatus('');
+    try {
+      const response = await sdk.safe.isMessageSigned(
+        JSON.stringify(typedMessage)
+      );
+      console.log({ response });
+      setTypedSignatureStatus(
+        `Typed message is ${response ? 'signed' : 'not signed'}`
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div>
@@ -74,10 +91,10 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
         appearance="primary"
         onClick={async () => {
           const balances = await sdk.safe.experimental_getBalances({
-            currency: "rub",
-          })
+            currency: 'rub',
+          });
 
-          console.log({ balances })
+          console.log({ balances });
         }}
       >
         Get safe balances
@@ -98,7 +115,7 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       <TextInput
         value={safeTxGas}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setSafeTxGas(e.target.value)
+          setSafeTxGas(e.target.value);
         }}
       />
 
@@ -110,7 +127,7 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       <TextInput
         value={safeTxHash}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setSafeTxHash(e.target.value)
+          setSafeTxHash(e.target.value);
         }}
       />
 
@@ -124,13 +141,13 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
         placeholder="Message"
         value={message}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setMessage(e.target.value)
+          setMessage(e.target.value);
         }}
       />
       <Button
         appearance="primary"
         onClick={() => {
-          sdk.txs.signMessage(message)
+          sdk.txs.signMessage(message);
         }}
       >
         Sign message
@@ -139,8 +156,28 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
         Check signature
       </Button>
       {signatureStatus && <Text>{signatureStatus}</Text>}
+      <hr />
+      <Textarea
+        placeholder="Typed Message"
+        value={typedMessage}
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+          setTypedMessage(e.target.value);
+        }}
+      />
+      <Button
+        appearance="primary"
+        onClick={() => {
+          sdk.txs.signTypedMessage(JSON.stringify(typedMessage));
+        }}
+      >
+        Sign Typed message
+      </Button>
+      <Button appearance="default" onClick={handleCheckTypedSignatureClick}>
+        Check Typed signature
+      </Button>
+      {typedSignatureStatus && <Text>{typedSignatureStatus}</Text>}
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

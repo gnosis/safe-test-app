@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
-import styled from "styled-components"
-import { Spinner, Heading, SegmentedControl } from "evergreen-ui"
-import SafeAppsSDK, { SafeInfo } from "@gnosis.pm/safe-apps-sdk"
-import { AppTabs } from "./types"
-import Main from "./tabs/Main"
-import RpcCalls from "./tabs/RpcCalls"
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { Spinner, Heading, SegmentedControl } from 'evergreen-ui';
+import SafeAppsSDK, { SafeInfo } from '@gnosis.pm/safe-apps-sdk';
+import { AppTabs } from './types';
+import Main from './tabs/Main';
+import RpcCalls from './tabs/RpcCalls';
 
 const Container = styled.div`
   padding: 24px;
@@ -16,34 +16,43 @@ const Container = styled.div`
   grid-template-columns: 1fr;
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
-`
+`;
 
 const tabs = [
   {
-    value: "0",
-    label: "main",
+    value: '0',
+    label: 'main',
   },
-  { value: "1", label: "RPC" },
-]
+  { value: '1', label: 'RPC' },
+];
 
-const SDK = new SafeAppsSDK()
+const SDK = new SafeAppsSDK();
 
 const App = (): React.ReactElement => {
-  const [safeInfo, setSafeInfo] = useState<SafeInfo | undefined>()
+  const [safeInfo, setSafeInfo] = useState<SafeInfo | undefined>();
 
   useEffect(() => {
-    async function loadSafeInfo() {
-      const info = await SDK.safe.getInfo()
-      console.log({ info })
-      setSafeInfo(info)
-    }
-    loadSafeInfo()
-  }, [])
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
+      .then(function (stream) {
+        console.log('fine');
+      })
+      .catch(function (err) {
+        console.error(err);
+      });
 
-  const [currentTab, setCurrentTab] = useState<string>("0")
+    async function loadSafeInfo() {
+      const info = await SDK.safe.getInfo();
+      console.log({ info });
+      setSafeInfo(info);
+    }
+    loadSafeInfo();
+  }, []);
+
+  const [currentTab, setCurrentTab] = useState<string>('0');
 
   if (!safeInfo) {
-    return <Spinner size={24} />
+    return <Spinner size={24} />;
   }
 
   return (
@@ -57,10 +66,10 @@ const App = (): React.ReactElement => {
         options={tabs}
       />
 
-      {currentTab === "0" && <Main sdk={SDK} safeInfo={safeInfo} />}
-      {currentTab === "1" && <RpcCalls sdk={SDK} />}
+      {currentTab === '0' && <Main sdk={SDK} safeInfo={safeInfo} />}
+      {currentTab === '1' && <RpcCalls sdk={SDK} />}
     </Container>
-  )
-}
+  );
+};
 
-export default App
+export default App;
