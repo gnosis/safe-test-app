@@ -42,9 +42,10 @@ const App = (): React.ReactElement => {
       });
 
     async function loadSafeInfo() {
-      const info = await SDK.safe.getInfo();
-      console.log({ info });
-      setSafeInfo(info);
+      const safuInfo = await SDK.safe.getInfo()
+      const chainInfo = await SDK.safe.getChainInfo()
+      console.log({ safuInfo, chainInfo })
+      setSafeInfo(safuInfo)
     }
     loadSafeInfo();
   }, []);
