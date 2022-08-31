@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, TextInput, Textarea, Text } from 'evergreen-ui';
-import SdkInstance, { SafeInfo } from '@gnosis.pm/safe-apps-sdk';
+import SdkInstance, {isObjectEIP712TypedData, SafeInfo} from '@gnosis.pm/safe-apps-sdk';
 
 type OwnProps = {
   sdk: SdkInstance;
@@ -68,7 +68,7 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
     setTypedSignatureStatus('');
     try {
       const response = await sdk.safe.isMessageSigned(
-        JSON.stringify(JSON.parse(typedMessage))
+        JSON.parse(typedMessage)
       );
       console.log({ response });
       setTypedSignatureStatus(
@@ -167,7 +167,10 @@ const Main = ({ sdk, safeInfo }: OwnProps): React.ReactElement => {
       <Button
         appearance="primary"
         onClick={() => {
-          const message = JSON.stringify(JSON.parse(typedMessage));
+          const message = JSON.parse(typedMessage);
+          if (!isObjectEIP712TypedData(message)) {
+              return
+          }
           sdk.txs.signTypedMessage(message);
           console.log(message);
         }}
