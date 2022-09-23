@@ -3,6 +3,7 @@
   "name": "Safe Test App",
   "description": "Describe your Safe App here",
   "iconPath": "logo.svg",
+  "safe_apps_permissions": ["camera", "microphone"],
   "icons": [
     {
       "src": "favicon.ico",
